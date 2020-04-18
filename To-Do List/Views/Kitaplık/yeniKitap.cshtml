@@ -1,0 +1,20 @@
+﻿@model To_Do_List.Models.Entity.TBLKITAPLIK
+@{
+    ViewBag.Title = "yeniKitap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form class="form-group" method="post">
+        <label>Kitap İsmi</label><br />
+        <br />
+        <input type="text" class="form-control" name="KitapAdi" /><br />
+        <label>Kitap Yazari</label><br />
+        <br />
+        @Html.DropDownListFor(m => m.TBLYAZAR.YazarID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+
+        <div style="margin-top:20px;">
+            <button class="btn btn-info">Kitap Ekle</button>
+        </div>
+
+    </form>

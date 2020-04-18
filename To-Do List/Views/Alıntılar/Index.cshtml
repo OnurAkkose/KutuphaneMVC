@@ -1,0 +1,24 @@
+﻿@using To_Do_List.Models.Entity;
+@model List<TBLALINTI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-bordered">
+    <tr>
+        <th>Alıntı Numarası</th>
+        <th>Hangi Kitap</th>
+        <th>Alıntı</th>
+    </tr>
+    <tbody>
+        @foreach(var alnt in Model)
+        {
+            <tr>
+                <th>@alnt.AlintiID</th>
+                <th>@alnt.TBLKITAPLIK.KitapAdi</th>
+                <td>@alnt.Alinti</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Alıntılar/YeniAlinti" class="btn btn-primary">Yeni Alıntı Ekle</a>

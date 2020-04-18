@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcKütüphaneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TBLALINTI">
+    <Key>
+      <PropertyRef Name="AlintiID" />
+    </Key>
+    <Property Name="AlintiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapAdi" Type="int" />
+    <Property Name="Alinti" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TBLKITAPLIK">
+    <Key>
+      <PropertyRef Name="KitapID" />
+    </Key>
+    <Property Name="KitapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapAdi" Type="varchar" MaxLength="30" />
+    <Property Name="KitapYazari" Type="smallint" />
+  </EntityType>
+  <EntityType Name="TBLOKUNACAK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapAdi" Type="varchar" MaxLength="30" />
+    <Property Name="YazarAdi" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TBLYAZAR">
+    <Key>
+      <PropertyRef Name="YazarID" />
+    </Key>
+    <Property Name="YazarID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YazarAdi" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_TBLALINTI_TBLKITAPLIK">
+    <End Role="TBLKITAPLIK" Type="Self.TBLKITAPLIK" Multiplicity="0..1" />
+    <End Role="TBLALINTI" Type="Self.TBLALINTI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKITAPLIK">
+        <PropertyRef Name="KitapID" />
+      </Principal>
+      <Dependent Role="TBLALINTI">
+        <PropertyRef Name="KitapAdi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLKITAPLIK_TBLYAZAR">
+    <End Role="TBLYAZAR" Type="Self.TBLYAZAR" Multiplicity="0..1" />
+    <End Role="TBLKITAPLIK" Type="Self.TBLKITAPLIK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLYAZAR">
+        <PropertyRef Name="YazarID" />
+      </Principal>
+      <Dependent Role="TBLKITAPLIK">
+        <PropertyRef Name="KitapYazari" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcKütüphaneModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLALINTI" EntityType="Self.TBLALINTI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLKITAPLIK" EntityType="Self.TBLKITAPLIK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLOKUNACAK" EntityType="Self.TBLOKUNACAK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLYAZAR" EntityType="Self.TBLYAZAR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBLALINTI_TBLKITAPLIK" Association="Self.FK_TBLALINTI_TBLKITAPLIK">
+      <End Role="TBLKITAPLIK" EntitySet="TBLKITAPLIK" />
+      <End Role="TBLALINTI" EntitySet="TBLALINTI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLKITAPLIK_TBLYAZAR" Association="Self.FK_TBLKITAPLIK_TBLYAZAR">
+      <End Role="TBLYAZAR" EntitySet="TBLYAZAR" />
+      <End Role="TBLKITAPLIK" EntitySet="TBLKITAPLIK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,23 @@
+﻿@model To_Do_List.Models.Entity.TBLOKUNACAK  
+@{
+    ViewBag.Title = "OkunacakKitap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" >
+
+    <label>Kitap İsmi</label><br />
+    <br />
+    <input type="text" class="form-control" name="KitapAdi" />
+    <br />
+    <label>Yazarı</label><br />
+    <br />
+    <input type="text" class="form-control" name="YazarAdi"/>
+
+    <div style="margin-top:20px">
+        <button class="btn btn-primary">Kitap Ekle</button>
+    </div>
+
+
+</form>
+

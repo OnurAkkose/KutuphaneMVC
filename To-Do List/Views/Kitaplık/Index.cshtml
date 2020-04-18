@@ -1,0 +1,38 @@
+﻿@using To_Do_List.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<TBLKITAPLIK>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Kitap Numarası</th>
+            <th>Kitap Adı</th>
+            <th>Yazarı</th>
+            <th>Güncelle</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kit in Model)
+        {
+            <tr>
+                <th>@kit.KitapID</th>
+                <td>@kit.KitapAdi</td>
+                <td>@kit.TBLYAZAR.YazarAdi</td>
+                <td><a href="/Kitaplık/GüncelleGetir/@kit.KitapID" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new {sayfa }))
+
+
+
+<a href="/Kitaplık/yeniKitap" class="btn btn-primary">Yeni Kitap Ekle</a>
+

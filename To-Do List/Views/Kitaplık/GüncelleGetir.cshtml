@@ -1,0 +1,25 @@
+﻿@model To_Do_List.Models.Entity.TBLKITAPLIK
+@{
+    ViewBag.Title = "GüncelleGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Güncelle", "Kitaplık", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.KitapID)
+        @Html.TextAreaFor(m => m.KitapID, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.KitapAdi)
+        @Html.TextAreaFor(m => m.KitapAdi, new { @class = "form-control" })
+
+        @Html.LabelFor(m => m.KitapYazari)
+        @Html.TextAreaFor(m => m.KitapYazari, new { @class = "form-control" })
+
+    </div>
+
+    <div>
+        <button class="btn btn-primary">Kitabı Güncelle</button>
+    </div>
+}
+
